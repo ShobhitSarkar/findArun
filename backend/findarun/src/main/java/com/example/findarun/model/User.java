@@ -1,6 +1,7 @@
 package com.example.findarun.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,6 +25,17 @@ public class User {
     private String userType; // either CREATOR or PARTICIPANT
     private String userName;
     private String password;
+
+    @Enumerated
+    private UserRole role;
+
+    public UserRole getRole() {
+        return this.role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
     public Long getUserId() {
         return this.userId;

@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.findarun.model.User;
+import com.example.findarun.model.UserRole;
 import com.example.findarun.repository.UserRepository;
 import java.util.Optional;
 import java.util.List;
@@ -33,6 +34,54 @@ public class UserService {
      */
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    public User createUser(User user) throws Exception{
+
+        if (userRepository.findByUsername(user.getUserName()).isPresent()){
+            throw new Exception("Username: " + user.getUserName() + "is already taken");
+        }
+
+        if (userRepository.findByEmail(user.getEmail()).isPresent()){
+            throw new Exception("Email " + user.getEmail() + "is already taken");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        user.setRole(UserRole.PARTICIPANT); 
+
+        return userRepository.save(user);
+    }
+
+    /**
+     * Promote from participant to creator
+     * @param userId - user being promoted
+     * @return
+     */
+    public User promoteToCreator (Long userId) throws Exception{
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found with id : " + userId));
+
+        if (user.getRole() == UserRole.CREATOR){
+            throw new Exception("User is already a creator.");
+        }
+
+        user.setRole(UserRole.CREATOR);
+
+        return userRepository.save(user);
+    }
+
+    /**
+     * Returns the role of the user
+     * @param userId the user for which we're trying to get information
+     * @return the userrole of the user 
+     * @throws Exception
+     */
+    public UserRole getUserRole(Long userId) throws Exception{
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found with" + userId)); 
+
+        return user.getRole();
+
     }
 
     /**
@@ -96,23 +145,6 @@ public class UserService {
         return userRepository.findByFirstNameContainingOrLastNameContaining(name, name);
     }
     
-    /**
-     * TODO 
-     * Promote from participant to creator
-     * @param userId - user being promoted
-     * @return
-     */
-    public boolean promoteToCreator (Long userId){
-
-        return false;
-    }
-
-
-
-
-
-
-
 
     
 }
