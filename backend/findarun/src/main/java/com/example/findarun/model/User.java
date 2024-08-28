@@ -22,6 +22,8 @@ public class User {
     private String location;
     private String sport;
     private String userType; // either CREATOR or PARTICIPANT
+    private String userName;
+    private String password;
 
     public Long getUserId() {
         return this.userId;
@@ -85,6 +87,22 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }
