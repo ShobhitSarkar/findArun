@@ -85,6 +85,78 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    /**
+     * Post mapping to update password 
+     * @param id id of the user being changed 
+     * @param passwordData map of old password, new password 
+     * @return 
+     */
+    @PostMapping("/{id}/change-password")
+    public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody Map <String, String> passwordData) {
+        
+        String oldPassword = passwordData.get("oldPassword"); 
+        String newPassword = passwordData.get("newPassword"); 
+
+        if (oldPassword == null || newPassword == null){
+            return ResponseEntity.badRequest().build();
+        }
+
+        try {
+            boolean changed = userService.changePassword(id, oldPassword, newPassword);
+            
+            if (changed){
+                return ResponseEntity.noContent().build();
+            } else{
+                return ResponseEntity.badRequest().build();
+            }
+        } catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     * Get method for search user by name 
+     * @param name name of the user we're trying to find
+     * @return
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchUsers(@RequestParam String name) {
+        List<User> users = userService.searchUserByName(name); 
+
+        return ResponseEntity.ok(users);
+    }
+
+    /**
+     * Put mapping to promote participant to creator 
+     * @param id id of the participant we're trying to promote
+     * @return
+     */
+    @PutMapping("/{id}/promote")
+    public ResponseEntity<User> promoteToCreator(@PathVariable Long id) {
+        try {
+            User promotedUser = userService.promoteToCreator(id);
+            return ResponseEntity.ok(promotedUser);
+        } catch (Exception e) {
+            if (e.getMessage().contains("User not found")) {
+                return ResponseEntity.notFound().build();
+            } else if (e.getMessage().contains("already a creator")) {
+                return ResponseEntity.badRequest().body(null);
+            } else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }
+    }
+
+    /**
+     * TODO: Implement search user by location, user statistics
+     */
+
+
+    
+    
+    
+    
 
 
     
