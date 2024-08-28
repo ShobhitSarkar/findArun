@@ -1,5 +1,9 @@
 package com.example.findarun.repository;
 
-public class RunClubRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.findarun.model.RunClub;
+
+public interface RunClubRepository extends JpaRepository <RunClub, Long> {
     
 }

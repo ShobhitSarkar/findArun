@@ -1,5 +1,9 @@
 package com.example.findarun.repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class UserRepository extends JPARepository<User, Long> {
+import com.example.findarun.model.User;
+
+
+public interface UserRepository extends JpaRepository <User, Long> {
     
 }

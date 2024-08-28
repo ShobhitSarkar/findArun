@@ -1,5 +1,11 @@
 package com.example.findarun.repository;
 
-public class EventRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.findarun.model.Event;
+
+public interface EventRepository extends JpaRepository <Event, Long> {
+
+
     
 }
