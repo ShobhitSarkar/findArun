@@ -17,6 +17,10 @@ public class RunClub {
     private int capacity;
     private String socialMedia;
 
+    //TODO: figure out the relationships between creator, participants and events 
+
+
+
     public Long getRunClubId() {
         return this.runClubId;
     }
