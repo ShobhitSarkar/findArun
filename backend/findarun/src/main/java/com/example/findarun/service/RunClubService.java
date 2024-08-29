@@ -41,11 +41,7 @@ public class RunClubService {
     }
 
     /**
-     * Other methods to implement : 
-     * get run club by id 
-     * get all rub clubs 
-     * update run club 
-     * delete a runClub 
+     * TODO: Other methods to implement : 
      * add a member to a run club 
      * remove a member 
      * get all members of the run club 
@@ -102,7 +98,9 @@ public class RunClubService {
         runClubRepository.deleteById(id);
     }
 
-    
+
+
+
 
 
 
