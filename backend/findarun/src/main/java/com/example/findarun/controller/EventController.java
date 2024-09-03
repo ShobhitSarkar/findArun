@@ -28,6 +28,12 @@ public class EventController {
     @Autowired
     private EventService eventService; 
 
+    /**
+     * Post mapping to create an event associated with a runclub
+     * @param event - event that we're trying to create
+     * @param runclubId - runclub for which we're creating an event 
+     * @return
+     */
     @PostMapping("/createEvent/{runClubId}")
     public ResponseEntity<Event> createEvent(@RequestBody Event event, @PathVariable Long runclubId){
 
@@ -43,6 +49,11 @@ public class EventController {
         return new ResponseEntity<>(createdEvent, HttpStatus.CREATED); 
     }
 
+    /**
+     * Returns a single event 
+     * @param id id of the event we're trying to retrieve 
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
 
@@ -57,6 +68,10 @@ public class EventController {
         return ResponseEntity.ok(event);
     }
 
+    /**
+     * Returns a list of all the events 
+     * @return the list of all events 
+     */
     @GetMapping
     public ResponseEntity<List<Event>> getAllEvents(){
         List<Event> events = eventService.getAllEvents(); 
@@ -64,6 +79,12 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
+    /**
+     * Put method to update the information about an event 
+     * @param eventId - id of the event we're trying to update 
+     * @param eventDetails - updated event details 
+     * @return details of the updated event 
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent (@PathVariable Long eventId, @RequestBody Event eventDetails){
         Event updatedEvent; 
@@ -78,6 +99,11 @@ public class EventController {
 
     }
 
+    /**
+     * Delete method to delete an event
+     * @param id - id of the event we're trying to delete 
+     * @return
+     */
     @DeleteMapping
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id){
         eventService.deleteEvent(id);
@@ -85,7 +111,7 @@ public class EventController {
         return ResponseEntity.noContent().build(); 
     }
 
-    
+
     
     
 
