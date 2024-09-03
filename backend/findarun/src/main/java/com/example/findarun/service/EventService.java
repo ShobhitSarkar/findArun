@@ -88,24 +88,67 @@ public class EventService {
         eventRepository.deleteById(eventId);
     }
 
-    public List<Event> getEventsByRunClub(Long runClubId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEventsByRunClub'");
+    /**
+     * Method to return a list of events that the runclub is hosting
+     * @param runClubId - id of the runclub for which we need information
+     * @return
+     * @throws Exception
+     */
+    public List<Event> getEventsByRunClub(Long runClubId) throws Exception {
+
+        RunClub runClub = runClubRepository.findById(runClubId).orElseThrow(() -> new Exception("Runclub with " + runClubId + "not found !"));
+
+        return eventRepository.findByRunClub(runClub);
+        
     }
 
-    public void addAttendee(Long id, Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addAttendee'");
+    /**
+     * Method to add an attendee to an event 
+     * @param eventId - id of the event we're adding an attendee to. 
+     * @param userId - id of the user attending the event 
+     * @throws Exception - if the event is full, if the event or user is not found 
+     */
+    public void addAttendee(Long eventId, Long userId) throws Exception {
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new Exception("No user with" + userId + "found !")); 
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("No user with " + userId + "found")); 
+
+        if (event.getAttendees().size() >= event.getCapacity()){
+            throw new Exception("Event is at full capacity. Sorry !"); 
+        }
+
+        if (!event.getAttendees().contains(user)){
+            event.getAttendees().add(user); 
+            eventRepository.save(event);
+        }
     }
 
-    public void removeAttendee(Long eventId, Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeAttendee'");
+    /**
+     * Method to remove an attendee from an event 
+     * @param eventId
+     * @param userId
+     */
+    public void removeAttendee(Long eventId, Long userId) throws Exception {
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new Exception("No event with" + eventId + "found !")); 
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("No user with" + userId + "found !")); 
+
+        if (event.getAttendees().remove(user)){
+            eventRepository.save(event);
+        }
+
+
     }
 
-    public List<User> getEventAttendees(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEventAttendees'");
+    /**
+     * Method to get all the attendees of a particular event 
+     * @param eventId
+     * @return
+     */
+    public List<User> getEventAttendees(Long eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new Exception("No event with" + eventId + "found !")); 
+
+        return new ArrayList<>(event.getAttendees());
     }
     
 }
