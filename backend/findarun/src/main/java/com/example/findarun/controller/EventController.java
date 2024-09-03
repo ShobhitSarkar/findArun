@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.findarun.model.Event;
+import com.example.findarun.model.User;
 import com.example.findarun.service.EventService;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,13 +105,65 @@ public class EventController {
      * @param id - id of the event we're trying to delete 
      * @return
      */
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id){
         eventService.deleteEvent(id);
         
         return ResponseEntity.noContent().build(); 
     }
 
+    /**
+     * Get mapping to get events by runclub
+     * @param runClubId
+     * @return
+     */
+    @GetMapping("/runclub/{runClubId}")
+    public ResponseEntity<List<Event>> getEventsByRunClub(@PathVariable Long runClubId){
+        List<Event> events = eventService.getEventsByRunClub(runClubId);
+        return ResponseEntity.ok(events);
+    }
+
+    /**
+     * Post controller method to add an attendee to an event 
+     * @param eventId - id of the event to which attendee needs to be added 
+     * @param userId - id of the user attending the event 
+     * @return
+     */
+    @PostMapping("/{eventId}/attend")
+    public ResponseEntity<Void> attendEvent(@PathVariable Long eventId, @RequestParam Long userId ){
+        eventService.addAttendee(eventId, userId); 
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * Post controller to remove an attendee from the event 
+     * @param eventId - id of the event for which we're removing an attendee 
+     * @param userId - id of the user that is not going to be attending an event 
+     * @return 
+     */
+    @PostMapping("/{eventId}/cancel")
+    public ResponseEntity<Void> cancelAttendance (@PathVariable Long eventId, @RequestParam Long userId){
+        eventService.removeAttendee(eventId, userId); 
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * Controller to return a list of all the attendees for an event 
+     * @param id - id of the event for which we need information 
+     * @return
+     */
+    @GetMapping("/{eventId}/attendees")
+    public ResponseEntity<List<User>> getEventAttendees (@PathVariable Long id){
+        List<User> attendees = eventService.getEventAttendees(id); 
+
+        return ResponseEntity.ok(attendees);
+    }
+
+    /**
+     * TODO : Implement possible controllers : 
+     * - Upcoming events 
+     * - Search for events
+     */
 
     
     

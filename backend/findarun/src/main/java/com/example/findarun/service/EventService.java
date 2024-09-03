@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.findarun.model.Event;
 import com.example.findarun.model.RunClub;
+import com.example.findarun.model.User;
 import com.example.findarun.repository.EventRepository;
 import com.example.findarun.repository.RunClubRepository;
 import com.example.findarun.repository.UserRepository;
@@ -85,6 +86,26 @@ public class EventService {
      */
     public void deleteEvent(Long eventId){
         eventRepository.deleteById(eventId);
+    }
+
+    public List<Event> getEventsByRunClub(Long runClubId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEventsByRunClub'");
+    }
+
+    public void addAttendee(Long id, Long userId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addAttendee'");
+    }
+
+    public void removeAttendee(Long eventId, Long userId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeAttendee'");
+    }
+
+    public List<User> getEventAttendees(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEventAttendees'");
     }
     
 }
