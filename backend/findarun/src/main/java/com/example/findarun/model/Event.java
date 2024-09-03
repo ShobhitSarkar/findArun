@@ -1,10 +1,16 @@
 package com.example.findarun.model;
 
+import java.util.*;
+
 import java.time.LocalDateTime; 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Event {
@@ -19,7 +25,19 @@ public class Event {
     private int capacity;
     private int currentAttendance;
 
-    // TODO: figure out the relationships between the creator, runclub and participant 
+   @ManyToOne
+   @JoinColumn(name="runclub_id")
+   private RunClub runClub; 
+
+   @ManyToMany
+   @JoinTable(
+    name="event_attendees",
+    joinColumns = @JoinColumn(name = "event_id"),
+    inverseJoinColumns = @JoinColumn(name = "user_id")
+   )
+   private List<User> attendees = new ArrayList<>();
+
+   
 
     public Long getEventId() {
         return this.eventId;

@@ -13,8 +13,8 @@ public class CreatorController {
     @Autowired
     private CreatorRepository creatorRepository; 
     
-    // @Autowired 
-    // private CreatorService creatorService;
+    @Autowired 
+    private CreatorService creatorService;
 
 
     
