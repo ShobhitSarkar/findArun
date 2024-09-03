@@ -86,12 +86,5 @@ public class EventService {
     public void deleteEvent(Long eventId){
         eventRepository.deleteById(eventId);
     }
-
-
-
-
-
-
-
     
 }

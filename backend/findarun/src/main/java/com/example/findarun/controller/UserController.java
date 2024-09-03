@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
-
-
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {

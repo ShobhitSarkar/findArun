@@ -9,6 +9,10 @@ public class Creator extends User {
 
     // TODO: Figure out relationships between RunClub and Event. 
 
+    public Creator(User user) {
+        //TODO Auto-generated constructor stub
+    }
+
     public String getSocialMedia() {
         return this.socialMedia;
     }
