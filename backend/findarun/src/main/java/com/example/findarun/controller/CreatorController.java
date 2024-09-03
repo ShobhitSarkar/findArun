@@ -30,6 +30,11 @@ public class CreatorController {
     @Autowired 
     private CreatorService creatorService;
 
+    /**
+     * Post mappping to create a creator 
+     * @param creator
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Creator> createCreator (@RequestBody Creator creator){
         Creator newCreator = creatorService.createCreator(creator); 
@@ -37,6 +42,12 @@ public class CreatorController {
         return new ResponseEntity<>(newCreator, HttpStatus.CREATED);
     }
 
+    /**
+     * Get mapping to retrieve a single creator 
+     * @param creatorId
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/{creatorId}")
     public ResponseEntity<Creator> getCreatorById(@PathVariable Long creatorId) throws Exception{
         Creator creator; 
@@ -50,6 +61,12 @@ public class CreatorController {
         return ResponseEntity.ok(creator);
     }
 
+    /**
+     * Put mapping to update a particular creator 
+     * @param creatorId
+     * @param creatorDetails
+     * @return
+     */
     @PutMapping("/{creatorId}")
     public ResponseEntity<Creator> updateCreator (@PathVariable Long creatorId, @RequestBody Creator creatorDetails){
         Creator updatedCreator = creatorService.updateCreator(creatorId, creatorDetails); 
@@ -58,6 +75,12 @@ public class CreatorController {
 
     }
 
+    /**
+     * Delete a particular creator 
+     * @param creatorId
+     * @return
+     * @throws Exception
+     */
     @DeleteMapping("/{creatorId}")
     public ResponseEntity<Void> deleteCreator (@PathVariable Long creatorId) throws Exception{
         try {
@@ -69,6 +92,10 @@ public class CreatorController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * returns a list of creators
+     * @return a list of creators
+     */
     @GetMapping
     public ResponseEntity<List<Creator>> getAllCreators(){
         List<Creator> creators = creatorService.getAllCreators(); 
@@ -77,6 +104,12 @@ public class CreatorController {
 
     }
 
+    /**
+     * method to associate a runclub with a particular creator 
+     * @param creatorId
+     * @param runClub
+     * @return
+     */
     @PostMapping("/{creatorId}/runclubs")
     public ResponseEntity<RunClub> createRubClub(@PathVariable Long creatorId, @RequestBody RunClub runClub){
         RunClub newRunClub = creatorService.createRunClub(creatorId, runClub); 
@@ -84,6 +117,13 @@ public class CreatorController {
         return new ResponseEntity<>(newRunClub, HttpStatus.CREATED); 
     }
 
+    /**
+     * allows a creator for a runclub to be linked to an event 
+     * @param creatorId
+     * @param runClubId
+     * @param event
+     * @return
+     */
     @GetMapping("/{creatorId}/runclubs/{runClubId}/events")
     public ResponseEntity<Event> createEvent (@PathVariable Long creatorId, @PathVariable Long runClubId, @RequestBody Event event){
         Event newEvent = creatorService.createEvent(creatorId, runClubId, event); 
