@@ -118,7 +118,7 @@ public class EventController {
      * @return
      */
     @GetMapping("/runclub/{runClubId}")
-    public ResponseEntity<List<Event>> getEventsByRunClub(@PathVariable Long runClubId){
+    public ResponseEntity<List<Event>> getEventsByRunClub(@PathVariable Long runClubId) throws Exception{
         List<Event> events = eventService.getEventsByRunClub(runClubId);
         return ResponseEntity.ok(events);
     }
@@ -130,7 +130,7 @@ public class EventController {
      * @return
      */
     @PostMapping("/{eventId}/attend")
-    public ResponseEntity<Void> attendEvent(@PathVariable Long eventId, @RequestParam Long userId ){
+    public ResponseEntity<Void> attendEvent(@PathVariable Long eventId, @RequestParam Long userId ) throws Exception{
         eventService.addAttendee(eventId, userId); 
         return ResponseEntity.ok().build();
     }
@@ -142,7 +142,7 @@ public class EventController {
      * @return 
      */
     @PostMapping("/{eventId}/cancel")
-    public ResponseEntity<Void> cancelAttendance (@PathVariable Long eventId, @RequestParam Long userId){
+    public ResponseEntity<Void> cancelAttendance (@PathVariable Long eventId, @RequestParam Long userId) throws Exception{
         eventService.removeAttendee(eventId, userId); 
         return ResponseEntity.ok().build();
     }
@@ -153,7 +153,7 @@ public class EventController {
      * @return
      */
     @GetMapping("/{eventId}/attendees")
-    public ResponseEntity<List<User>> getEventAttendees (@PathVariable Long id){
+    public ResponseEntity<List<User>> getEventAttendees (@PathVariable Long id) throws Exception{
         List<User> attendees = eventService.getEventAttendees(id); 
 
         return ResponseEntity.ok(attendees);

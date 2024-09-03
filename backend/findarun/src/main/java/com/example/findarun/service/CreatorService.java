@@ -1,6 +1,7 @@
 package com.example.findarun.service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,15 +74,23 @@ public class CreatorService {
      * Demoting a creator to participant in case we need to delete it 
      * @param creatorId
      */
-    public void deleteCreator (Long creatorId){
+    public void deleteCreator (Long creatorId) throws Exception{
+
+        Creator creator;
+
         try {
-            Creator creator = getCreatorById(creatorId); 
+            creator = getCreatorById(creatorId); 
         } catch (Exception e) {
             throw new Exception("No creator with id:" + creatorId + "found.");
         }
         creator.setRole(UserRole.PARTICIPANT);
 
         userRepository.save(creator);
+    }
+
+    public Creator updateCreator(Long creatorId, Creator creatorDetails) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateCreator'");
     }
 
 
