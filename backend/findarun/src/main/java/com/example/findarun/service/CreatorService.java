@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.findarun.model.Creator;
+import com.example.findarun.model.Event;
+import com.example.findarun.model.RunClub;
 import com.example.findarun.model.User;
 import com.example.findarun.model.UserRole;
 import com.example.findarun.repository.EventRepository;
@@ -91,6 +93,16 @@ public class CreatorService {
     public Creator updateCreator(Long creatorId, Creator creatorDetails) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateCreator'");
+    }
+
+    public RunClub createRunClub(Long creatorId, RunClub runClub) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createRunClub'");
+    }
+
+    public Event createEvent(Long creatorId, Long runClubId, Event event) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createEvent'");
     }
 
 

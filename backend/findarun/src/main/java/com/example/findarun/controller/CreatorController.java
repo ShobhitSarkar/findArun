@@ -1,5 +1,7 @@
 package com.example.findarun.controller;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.findarun.model.Creator;
+import com.example.findarun.model.Event;
+import com.example.findarun.model.RunClub;
 import com.example.findarun.repository.CreatorRepository;
 import com.example.findarun.service.CreatorService;
 
@@ -63,6 +67,35 @@ public class CreatorController {
         }
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Creator>> getAllCreators(){
+        List<Creator> creators = creatorService.getAllCreators(); 
+
+        return ResponseEntity.ok(creators);
+
+    }
+
+    @PostMapping("/{creatorId}/runclubs")
+    public ResponseEntity<RunClub> createRubClub(@PathVariable Long creatorId, @RequestBody RunClub runClub){
+        RunClub newRunClub = creatorService.createRunClub(creatorId, runClub); 
+
+        return new ResponseEntity<>(newRunClub, HttpStatus.CREATED); 
+    }
+
+    @GetMapping("/{creatorId}/runclubs/{runClubId}/events")
+    public ResponseEntity<Event> createEvent (@PathVariable Long creatorId, @PathVariable Long runClubId, @RequestBody Event event){
+        Event newEvent = creatorService.createEvent(creatorId, runClubId, event); 
+
+        return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{creatorId}/events")
+    public ResponseEntity<List<Event>> getCreatorEvents(@PathVariable Long creatorId){
+       // TODO : need to implement searching for 
+
+       return null;
     }
 
 
