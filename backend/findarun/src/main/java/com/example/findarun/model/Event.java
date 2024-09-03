@@ -37,7 +37,13 @@ public class Event {
    )
    private List<User> attendees = new ArrayList<>();
 
-   
+   public List<User> getAttendees() {
+       return this.attendees;
+   }
+
+   public void setAttendees(List<User> attendees) {
+       this.attendees = attendees;
+   }
 
     public Long getEventId() {
         return this.eventId;

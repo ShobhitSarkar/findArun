@@ -145,7 +145,7 @@ public class EventService {
      * @param eventId
      * @return
      */
-    public List<User> getEventAttendees(Long eventId) {
+    public List<User> getEventAttendees(Long eventId) throws Exception{
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new Exception("No event with" + eventId + "found !")); 
 
         return new ArrayList<>(event.getAttendees());
