@@ -28,13 +28,23 @@ public class ParticipantController {
     @Autowired
     private ParticipantService participantService;
 
+    /**
+     * Post method for creating a participant 
+     * @param newParticipant - details of the new participant 
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Participant> createParticipant (@RequestBody Participant newParticipant){
         Participant participant = new Participant(newParticipant);
 
-        return ResponseEntity.ok(newParticipant);
+        return ResponseEntity.ok(participant);
     }
 
+    /**
+     * Retrieve a single participant 
+     * @param participantId - id of the participant we're trying to retrieve 
+     * @return a single participant 
+     */
     @GetMapping("/participantId}")
     public ResponseEntity<Participant> getParticipant (@PathVariable Long participantId){
         Participant participant = participantService.getSingleParticipant(participantId); 
@@ -42,6 +52,10 @@ public class ParticipantController {
         return ResponseEntity.ok(participant); 
     }
 
+    /**
+     * Retrieve all the participants 
+     * @return a list of all the participants 
+     */
     @GetMapping
     public ResponseEntity<List<Participant>> getAllParticipants(){
         List<Participant> participants = participantService.getAllParticipants(); 
@@ -49,15 +63,26 @@ public class ParticipantController {
         return ResponseEntity.ok(participants);
     }
 
+    /**
+     * Update a participant 
+     * @param participantId - id of the participant we're updating 
+     * @param updatedParticipant - details of the participant 
+     * @return - updated participant 
+     */
     @PutMapping("/{participantId}")
     public ResponseEntity<Participant> updateParticipant (@PathVariable Long participantId, @RequestBody Participant updatedParticipant){
 
         Participant participant = participantService.updateParticipant(participantId, updatedParticipant); 
 
-        return ResponseEntity.ok(updatedParticipant);
+        return ResponseEntity.ok(participant);
 
     }
 
+    /**
+     * Delete a partcipant 
+     * @param participantId - id of the participant we're deleting 
+     * @return
+     */
     @DeleteMapping("/{participantId}")
     public ResponseEntity<Void> deleteParticipant (@PathVariable Long participantId){
         
@@ -66,6 +91,12 @@ public class ParticipantController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * For a participant to join a runClub
+     * @param participantId - id of the participant trying to join 
+     * @param runClubId - id of the runclub the participant is joining 
+     * @return - void 
+     */
     @PostMapping("/{participantId}/join/{runClubId}")
     public ResponseEntity<Void> joinRunClub (@PathVariable Long participantId, @PathVariable Long runClubId){
 
@@ -74,6 +105,12 @@ public class ParticipantController {
         return ResponseEntity.noContent().build(); 
     }
 
+    /**
+     * For a participant to leave a runClub
+     * @param participantId - id of the participant trying to join 
+     * @param runClubId - id of the runclub being joined 
+     * @return - nothing 
+     */
     @PostMapping("/{participantId}/leave/{runClubId}")
     public ResponseEntity<Void> leaveRunClub (@PathVariable Long participantId, @PathVariable Long runClubId){
 
@@ -82,6 +119,11 @@ public class ParticipantController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Get all the runclubs the participant is part of 
+     * @param participantId - id of the participant we need information for 
+     * @return a list of runclubs 
+     */
     @GetMapping("/{participantId}/runClubs")
     public ResponseEntity<List<RunClub>> getParticipantRunClubs (@PathVariable Long participantId){
         
@@ -90,6 +132,12 @@ public class ParticipantController {
         return ResponseEntity.ok(runClubs);
     }
 
+    /**
+     * method for a participant to register for an event 
+     * @param participantId - id of the participant trying to join
+     * @param eventId - id of the event to join
+     * @return nothin 
+     */
     @PutMapping("/{participantId}/register/{eventId}")
     public ResponseEntity<Void> joinEvent (@PathVariable Long participantId, @PathVariable Long eventId){
 
@@ -98,6 +146,12 @@ public class ParticipantController {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * method for the participant to unregister for an event 
+     * @param pariticpantId - id of the participant trying to leave
+     * @param eventId - id of the event the participant is trying to leave 
+     * @return nothing 
+     */
     @PutMapping("/{participantId}/unregister/{eventId}")
     public ResponseEntity<Void> leaveEvent (@PathVariable Long pariticpantId, @PathVariable Long eventId){
 
@@ -106,6 +160,11 @@ public class ParticipantController {
         return ResponseEntity.noContent().build(); 
     }
 
+    /**
+     * method for getting all the events the person is participating in 
+     * @param participantId - id of the participant we need information for
+     * @return : nothing 
+     */
     @GetMapping("/{participantId}/events")
     public ResponseEntity<Void> joinEvent (@PathVariable Long participantId){
 

@@ -51,5 +51,10 @@ public class ParticipantService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'leaveEvent'");
     }
+
+    public void getParticipantEvents(Long participantId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getParticipantEvents'");
+    }
     
 }
