@@ -35,9 +35,15 @@ public class RunClubController {
     }
 
     @GetMapping("/{runClubId}")
-    public ResponseEntity<RunClub> getRunClub(@PathVariable Long runClubId){
+    public ResponseEntity<RunClub> getRunClub(@PathVariable Long runClubId) throws Exception{
 
-        RunClub runclub = runClubService.getRunClub(runClubId);
+        RunClub runclub; 
+        
+        try{
+            runclub = runClubService.getRunClub(runClubId);
+        } catch (Exception e){
+            throw new Exception("No runClub with id:" + runClubId + "found!");
+        }
 
         return ResponseEntity.ok(runclub);
     }
@@ -52,55 +58,85 @@ public class RunClubController {
     }
 
     @PutMapping("/{runclubId}")
-    public ResponseEntity<RunClub> updateRunClub (@RequestBody RunClub runClubDetails){
+    public ResponseEntity<RunClub> updateRunClub (@RequestBody RunClub runClubDetails) throws Exception{
 
-        RunClub updatedRunClub = runClubService.updateRunClub(runClubDetails); 
-
+        RunClub updatedRunClub = runClubService.updateRunClub(runClubDetails);
+       
         return ResponseEntity.ok(updatedRunClub);
     }
 
     @DeleteMapping("/{runClubId}")
-    public ResponseEntity<Void> deleteRunClub (@PathVariable Long runClubId){
+    public ResponseEntity<Void> deleteRunClub (@PathVariable Long runClubId) throws Exception{
 
-        runClubService.deleteRunClub(runClubId); 
+        try{
+            runClubService.deleteRunClub(runClubId); 
+        } catch (Exception e){
+            throw new Exception("No runclub with id:" + runClubId + "found !");
+        }
 
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{runClubId}/addMember/{userId}")
-    public ResponseEntity<Void> addMemberToRunClub (@PathVariable Long runClubId, @PathVariable Long userId){
+    public ResponseEntity<Void> addMemberToRunClub (@PathVariable Long runClubId, @PathVariable Long userId) throws Exception{
 
-        runClubService.addMember(runClubId, userId); 
+        try {
+            runClubService.addMember(runClubId, userId); 
+        } catch (Exception e){
+            throw new Exception("The details you've entered seem to be wrong, try again.");
+        }
 
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{runClubId}/removeMember/{userId}")
-    public ResponseEntity<Void> removeMemberFromRunClub (@PathVariable Long runClubId, @PathVariable Long userId){
-        runClubService.removeMember(runClubId, userId); 
+    public ResponseEntity<Void> removeMemberFromRunClub (@PathVariable Long runClubId, @PathVariable Long userId) throws Exception{
+        try {
+            runClubService.removeMember(runClubId, userId); 
+        } catch (Exception e){
+            throw new Exception("The details you've entered seem to be wrong, try again.");
+        }
 
         return ResponseEntity.noContent().build(); 
     }
 
     @GetMapping("/{runClubId}/members")
-    public ResponseEntity<List<User>> getAllRunClubMembers (@PathVariable Long runClubId){
+    public ResponseEntity<List<User>> getAllRunClubMembers (@PathVariable Long runClubId) throws Exception{
         
-        List<User> runClubMembers = runClubService.getAllRunClubMembers(runClubId); 
+        List<User> runClubMembers = null; 
+        
+        try {
+            runClubService.getAllRunClubMembers(runClubId); 
+        } catch (Exception e){
+            throw new Exception("No runclub with id:" + runClubId + "found!"); 
+        }
 
         return ResponseEntity.ok(runClubMembers);
     }
 
     @GetMapping("/{runClubId}/events")
-    public ResponseEntity<List<Event>> getAllRunClubEvents (@PathVariable Long runClubId){
+    public ResponseEntity<List<Event>> getAllRunClubEvents (@PathVariable Long runClubId) throws Exception{
 
-        List<Event> runClubEvents = runClubService.getAllRunClubEvents(runClubId); 
+        List<Event> runClubEvents = null; 
+        
+        try {
+            runClubService.getAllRunClubEvents(runClubId);
+        } catch (Exception e){
+            throw new Exception("The runclub with id:" + runClubId + "not found!");
+        } 
 
         return ResponseEntity.ok(runClubEvents);
     }
 
     @PostMapping("/{runClubId}/events")
-    public ResponseEntity<Event> createEvent(@PathVariable Long runClubId, @RequestBody Event event) {
-        Event newEvent = runClubService.createEventForRunClub(runClubId, event);
+    public ResponseEntity<Event> createEvent(@PathVariable Long runClubId, @RequestBody Event event) throws Exception {
+        Event newEvent = null; 
+        
+        try {
+            runClubService.createEventForRunClub(runClubId, event);
+        } catch (Exception e){
+            throw new Exception("Something looks wrong, double check the information you've provided.");
+        }
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
 

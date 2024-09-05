@@ -180,10 +180,6 @@ public class RunClubService {
 
         return savedEvent;
 
-        
-
-
-        
     } 
 
     
