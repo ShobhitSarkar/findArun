@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.findarun.model.Event;
+import com.example.findarun.model.Participant;
 import com.example.findarun.model.RunClub;
 import com.example.findarun.model.User;
 import com.example.findarun.repository.CreatorRepository;
@@ -31,8 +32,8 @@ public class RunClubService {
      * @return
      */
     public RunClub createRunClub(RunClub runClubDetails) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createRunClub'");
+        
+        return runClubRepository.save(runClubDetails);
     }
 
     /**
@@ -40,9 +41,8 @@ public class RunClubService {
      * @param runClubId
      * @return
      */
-    public RunClub getRunClub(Long runClubId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRunClub'");
+    public RunClub getRunClub(Long runClubId) throws Exception{
+        return runClubRepository.findById(runClubId).orElseThrow(() -> new Exception("No runclub with id" + runClubId + "found !"));
     }
 
     /**
@@ -50,22 +50,41 @@ public class RunClubService {
      * @return
      */
     public List<RunClub> getAllRunClubs() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllRunClubs'");
+        return runClubRepository.findAll();
+        
     }
 
-    public RunClub updateRunClub(RunClub runClubDetails) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateRunClub'");
+    public RunClub updateRunClub(RunClub runClubDetails) throws Exception {
+        RunClub existingClub; 
+        try {
+            existingClub = getRunClub(runClubDetails.getRunClubId());
+        } catch (Exception e){
+            throw new Exception("No runClub with the id found");
+        } 
+        existingClub.setRunClubName(runClubDetails.getRunClubName());
+        existingClub.setRunClubLocation(runClubDetails.getRunClubLocation());
+        existingClub.setCapacity(runClubDetails.getCapacity());
+        existingClub.setSocialMedia(runClubDetails.getSocialMedia());
+
+        return runClubRepository.save(existingClub);
+
+        
     }
 
     /**
      * Method to delete a runClub
      * @param runClubId
      */
-    public void deleteRunClub(Long runClubId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteRunClub'");
+    public void deleteRunClub(Long runClubId) throws Exception {
+        RunClub runClub; 
+        
+        try {
+            runClub = getRunClub(runClubId); 
+        } catch (Exception e){
+            throw new Exception("No run club with id found !");
+        }
+
+        runClubRepository.deleteById(runClubId);
     }
 
     /**
@@ -73,9 +92,18 @@ public class RunClubService {
      * @param runClubId
      * @param userId
      */
-    public void addMember(Long runClubId, Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addMember'");
+    public void addMember(Long runClubId, Long userId) throws Exception {
+        
+        RunClub runClub = getRunClub(runClubId); 
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User with id : " + userId + "found!")); 
+
+        runClub.getParticipants().add((Participant) user); 
+
+        runClubRepository.save(runClub);
+
+
+
     }
 
     /**
@@ -83,9 +111,17 @@ public class RunClubService {
      * @param runClubId
      * @param userId
      */
-    public void removeMember(Long runClubId, Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeMember'");
+    public void removeMember(Long runClubId, Long userId) throws Exception {
+        
+        RunClub runClub = getRunClub(runClubId); 
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("No user with id: " + userId + "found !")); 
+
+        runClub.getParticipants().remove(user); 
+
+        runClubRepository.save(runClub);
+
+
     }
 
     /**
@@ -93,9 +129,16 @@ public class RunClubService {
      * @param runClubId
      * @return
      */
-    public List<User> getAllRunClubMembers(Long runClubId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllRunClubMembers'");
+    public List<User> getAllRunClubMembers(Long runClubId) throws Exception {
+        RunClub runClub; 
+        
+        try{
+            runClub = getRunClub(runClubId); 
+        } catch (Exception e){
+            throw new Exception("No runclub with id" + runClubId + "found !");
+        }
+
+        return new ArrayList<>(runClub.getParticipants()); 
     }
 
     /**
@@ -103,9 +146,16 @@ public class RunClubService {
      * @param runClubId
      * @return
      */
-    public List<Event> getAllRunClubEvents(Long runClubId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllRunClubEvents'");
+    public List<Event> getAllRunClubEvents(Long runClubId) throws Exception {
+        RunClub runClub; 
+        
+        try {
+            runClub = getRunClub(runClubId);
+        } catch (Exception e){
+            throw new Exception ("No runclub with id: " + runClubId + "found");
+        }
+
+        return new ArrayList<>(runClub.getEvents());
     }
 
     /**
@@ -114,9 +164,26 @@ public class RunClubService {
      * @param event
      * @return
      */
-    public Event createEventForRunClub(Long runClubId, Event event) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createEventForRunClub'");
+    public Event createEventForRunClub(Long runClubId, Event event) throws Exception {
+        RunClub runClub; 
+        
+        try {
+            runClub = getRunClub(runClubId);
+        } catch (Exception e){
+            throw new Exception("Throw new exception"); 
+        }
+
+        event.setRunClub(runClub); 
+        Event savedEvent = eventRepository.save(event); 
+        runClub.getEvents().add(savedEvent); 
+        runClubRepository.save(runClub); 
+
+        return savedEvent;
+
+        
+
+
+        
     } 
 
     
