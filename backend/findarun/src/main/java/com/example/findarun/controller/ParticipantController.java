@@ -174,7 +174,7 @@ public class ParticipantController {
     }
 
     /**
-     * Additional things to add : 
+     * TODO: Additional things to add : 
      * 1) stats for participants 
      * 2) search participants
      */

@@ -93,4 +93,9 @@ public class Event {
         this.currentAttendance = currentAttendace;
     }
 
+    public void setRunClub(RunClub runClub2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setRunClub'");
+    }
+
 }
