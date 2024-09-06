@@ -1,5 +1,7 @@
 package com.example.findarun.controller;
 
+import java.util.*;
+
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class UserController {
      * @return
      */
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<java.util.List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
@@ -52,9 +54,16 @@ public class UserController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User createdUser = userService.createUser(user); 
-        return ResponseEntity.created(URI.create("api/users/" + createdUser.getUserId())).body(createdUser);
+    public ResponseEntity<User> createUser(@RequestBody User user) throws Exception{
+        User createdUser; 
+        
+        try {
+            createdUser = userService.createUser(user); 
+        } catch (Exception e){
+            throw new Exception("There seems to be a problem with the information provided. Please try again.");
+        }
+
+        return ResponseEntity.ok(createdUser);
     }
 
     /**
@@ -114,17 +123,17 @@ public class UserController {
         }
     }
 
-    /**
-     * Get method for search user by name 
-     * @param name name of the user we're trying to find
-     * @return
-     */
-    @GetMapping("/search")
-    public ResponseEntity<List<User>> searchUsers(@RequestParam String name) {
-        List<User> users = userService.searchUserByName(name); 
+    // /**
+    //  * Get method for search user by name 
+    //  * @param name name of the user we're trying to find
+    //  * @return
+    //  */
+    // @GetMapping("/search")
+    // public ResponseEntity<java.util.List<User>> searchUsers(@RequestParam String name) {
+    //     java.util.List<User> users = userService.searchUserByName(name); 
 
-        return ResponseEntity.ok(users);
-    }
+    //     return ResponseEntity.ok(users);
+    // }
 
     /**
      * Put mapping to promote participant to creator 
