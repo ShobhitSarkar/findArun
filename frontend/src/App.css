@@ -21,5 +21,14 @@
   }
   
   .content-wrap {
+    padding-top: 0px;
     min-height: calc(100vh - 60px);
+  }
+
+  .navbar {
+    margin-bottom: 0 !important;
+  }
+
+  .container, .container-fluid {
+    padding-top: 1rem !important;
   }
