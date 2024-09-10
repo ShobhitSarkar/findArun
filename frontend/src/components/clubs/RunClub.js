@@ -12,7 +12,7 @@ const runClubsData = [
 
 const RunClubs = () => {
     return (
-      <Container className="mt-5 pt-5 px-4" style={{ paddingTop: '60px',  }}>
+      <Container className="pt-5 px-4" >
         <h1 className="run-clubs-heading">
           Find a Run Club !
         </h1>
