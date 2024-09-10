@@ -1,5 +1,6 @@
 import React from 'react'; 
 import { Container, Card, Button} from 'react-bootstrap'; 
+import './RunClub.css'
 
 const runClubsData = [
     { id: 1, name: 'City Striders', location: 'Downtown', members: 42 },
@@ -11,8 +12,10 @@ const runClubsData = [
 
 const RunClubs = () => {
     return (
-      <Container className="mt-5 pt-5">
-        <h1 className="mb-4">Run Clubs Near You</h1>
+      <Container className="mt-5 pt-5 px-4" style={{ paddingTop: '60px',  }}>
+        <h1 className="run-clubs-heading">
+          Find a Run Club !
+        </h1>
         <div className="run-clubs-list" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
           {runClubsData.map(club => (
             <Card key={club.id} className="mb-3">
