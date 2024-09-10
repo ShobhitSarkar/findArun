@@ -1,0 +1,24 @@
+.run-clubs-list .card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .run-clubs-list .card-title {
+    color: #00FFFF;
+  }
+  
+  .run-clubs-list .card-text {
+    color: #fff;
+  }
+  
+  .run-clubs-list .btn-primary {
+    background-color: #00FFFF;
+    border-color: #00FFFF;
+    color: #000;
+  }
+  
+  .run-clubs-list .btn-primary:hover {
+    background-color: #00CCCC;
+    border-color: #00CCCC;
+  }
