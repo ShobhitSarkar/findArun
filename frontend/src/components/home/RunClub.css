@@ -1,0 +1,68 @@
+.run-clubs-list .card {
+    background-color: #32322F;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .run-clubs-list .card-title {
+    color: #F6547B;
+  }
+  
+  .run-clubs-list .card-text {
+    color: #fff;
+  }
+  
+  .run-clubs-list .btn-primary {
+    background-color: #F6547B;
+    border-color: #F3F2F0;
+    color: #000;
+  }
+  
+  .run-clubs-list .btn-primary:hover {
+    background-color: #32322F;
+    border-color: #FFFFFF;
+  }
+
+  .run-clubs-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .heading-container {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .run-clubs-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F6547B;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .heading-accent {
+    color: #F6547B;
+    font-weight: 300;
+  }
+  
+  .heading-underline {
+    width: 100px;
+    height: 4px;
+    background-color: #F6547B;
+    margin-top: 10px;
+  }
+  
+  /* Add a subtle glow effect on hover */
+  .heading-container:hover .heading-underline {
+    box-shadow: 0 0 10px #F6547B;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .run-clubs-heading {
+      font-size: 2rem;
+    }
+  }
