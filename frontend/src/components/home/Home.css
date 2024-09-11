@@ -1,0 +1,39 @@
+.home-view {
+    padding-bottom: 60px; /* Adjust based on your bottom nav height */
+  }
+  
+  .feed-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .feed-card .card-title {
+    color: #F6547B;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feed-card .card-text {
+    color: #fff;
+  }
+  
+  .feed-card .btn-primary {
+    background-color: #F6547B;
+    border-color: #F6547B;
+    color: #000;
+  }
+  
+  .feed-card .btn-primary:hover {
+    background-color: #F6547B;
+    border-color: #F6547B;
+  }
+  
+  .feed-card .badge {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  h1 {
+    color: #F6547B;
+  }
