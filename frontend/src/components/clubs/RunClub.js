@@ -1,6 +1,7 @@
 import React from 'react'; 
-import { Container, Card, Button} from 'react-bootstrap'; 
-import './RunClub.css'
+import { Container, Card, Button } from 'react-bootstrap'; 
+import { useNavigate } from 'react-router-dom';
+import './RunClub.css';
 
 const runClubsData = [
     { id: 1, name: 'City Striders', location: 'Downtown', members: 42 },
@@ -11,6 +12,12 @@ const runClubsData = [
 ];
 
 const RunClubs = () => {
+    const navigate = useNavigate();
+
+    const handleJoinClick = (clubId) => {
+        navigate(`/clubs/${clubId}`);
+    };
+
     return (
       <Container className="pt-5 px-4" >
         <h1 className="run-clubs-heading">
@@ -25,7 +32,12 @@ const RunClubs = () => {
                   <strong>Location:</strong> {club.location}<br />
                   <strong>Members:</strong> {club.members}
                 </Card.Text>
-                <Button variant="primary">Join Club</Button>
+                <Button 
+                  variant="primary" 
+                  onClick={() => handleJoinClick(club.id)}
+                >
+                  View Club
+                </Button>
               </Card.Body>
             </Card>
           ))}
@@ -35,6 +47,3 @@ const RunClubs = () => {
   };
   
   export default RunClubs;
-
-
-
