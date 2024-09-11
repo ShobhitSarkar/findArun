@@ -6,6 +6,7 @@ import AppNavbar from './components/navigation/AppNavbar.js';
 import RunClubs from './components/clubs/RunClub';
 import BottomNav from './components/navigation/BottomNav.js';
 import Home from './components/home/Home';
+import Events from './components/events/Event.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />  {/* Home route */}
             <Route path="/clubs" element={<RunClubs />} />  {/* RunClubs route */}
+            <Route path="/events" element={<Events/>} />
           </Routes>
         </div>
         <BottomNav />

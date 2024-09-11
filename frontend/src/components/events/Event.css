@@ -1,0 +1,72 @@
+.events-list .card {
+    background-color: #32322F;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .events-list .card-title {
+    color: #F6547B;
+  }
+  
+  .events-list .card-text {
+    color: #fff;
+  }
+  
+  .events-list .btn-primary {
+    background-color: #F6547B;
+    border-color: #F3F2F0;
+    color: #000;
+  }
+  
+  .events-list .btn-primary:hover {
+    background-color: #32322F;
+    border-color: #FFFFFF;
+  }
+
+  .events-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .events-container {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .events-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #F6547B;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .heading-accent {
+    color: #F6547B;
+    font-weight: 300;
+  }
+  
+  .heading-underline {
+    width: 100px;
+    height: 4px;
+    background-color: #F6547B;
+    margin-top: 10px;
+  }
+  
+  /* Add a subtle glow effect on hover */
+  .heading-container:hover .heading-underline {
+    box-shadow: 0 0 10px #F6547B;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .events-heading {
+      font-size: 2rem;
+    }
+  }
+
+  .events-list::-webkit-scrollbar {
+    display: none; 
+  }
