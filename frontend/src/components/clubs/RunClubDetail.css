@@ -1,0 +1,37 @@
+.run-club-detail .card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .run-club-detail .card-title {
+    color: #F6547B;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .run-club-detail .card-text,
+  .run-club-detail .list-group-item {
+    color: #fff;
+  }
+  
+  .run-club-detail .list-group-item {
+    background-color: transparent;
+    border-color: #333;
+  }
+  
+  .run-club-detail .btn-primary {
+    background-color: #F6547B;
+    border-color: #F6547B;
+    color: #000;
+  }
+  
+  .run-club-detail .btn-primary:hover {
+    background-color: #F6547B;
+    border-color: #F6547B;
+  }
+  
+  .run-club-detail .badge {
+    background-color: #F6547B;
+    color: #000;
+  }

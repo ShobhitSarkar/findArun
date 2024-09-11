@@ -8,6 +8,8 @@ import BottomNav from './components/navigation/BottomNav.js';
 import Home from './components/home/Home';
 import Events from './components/events/Event.js';
 import Profile from './components/profile/Profile.js';
+import RunClubDetail from './components/clubs/RunClubDetail.js';
+import EventDetail from './components/events/EventDetail.js';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />  {/* Home route */}
             <Route path="/clubs" element={<RunClubs />} />  {/* RunClubs route */}
+            <Route path="/clubs/:id" element={<RunClubDetail />} />
             <Route path="/events" element={<Events/>} />
+            <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/profile" element={<Profile/>} />
           </Routes>
         </div>

@@ -1,0 +1,32 @@
+.event-detail .card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 1rem;
+  }
+  
+  .event-detail .card-title {
+    color: #F6547B;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .event-detail .card-text,
+  .event-detail .list-group-item {
+    color: #fff;
+  }
+  
+  .event-detail .list-group-item {
+    background-color: transparent;
+    border-color: #333;
+  }
+  
+  .event-detail .btn-primary {
+    background-color: #F6547B;
+    border-color: #F6547B;
+    color: #000;
+  }
+  
+  .event-detail .btn-primary:hover {
+    background-color: #F6547B;
+    border-color: #F6547B;
+  }
