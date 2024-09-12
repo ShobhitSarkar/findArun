@@ -10,6 +10,9 @@ import Events from './components/events/Event.js';
 import Profile from './components/profile/Profile.js';
 import RunClubDetail from './components/clubs/RunClubDetail.js';
 import EventDetail from './components/events/EventDetail.js';
+import Login from './components/Login/Login';
+
+
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
             <Route path="/events" element={<Events/>} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
         <BottomNav />
