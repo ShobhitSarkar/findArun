@@ -1,5 +1,5 @@
 .events-list .card {
-    background-color: #32322F;
+  background-color: #1a1a1a;
     border: 1px solid #333;
     margin-bottom: 1rem;
   }
@@ -14,7 +14,7 @@
   
   .events-list .btn-primary {
     background-color: #F6547B;
-    border-color: #F3F2F0;
+    border-color: #F6547B;
     color: #000;
   }
   
@@ -24,8 +24,8 @@
   }
 
   .events-container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 5vw; 
+    padding-right: 5vw;
   }
   
   .events-container {
@@ -34,12 +34,6 @@
   }
   
   .events-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #F6547B;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
   }
   
   .heading-accent {
@@ -66,7 +60,6 @@
       font-size: 2rem;
     }
   }
-
-  .events-list::-webkit-scrollbar {
-    display: none; 
+  .run-clubs-list::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
   }

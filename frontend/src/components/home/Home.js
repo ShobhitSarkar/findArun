@@ -68,7 +68,7 @@ const Home = () => {
 
   return (
     <Container className="home-view mt-3">
-      <h1 className="mb-4">AROUND YOU</h1>
+      <h1 className="common-heading">AROUND YOU</h1>
       {feedItems.map(renderFeedItem)}
     </Container>
   );

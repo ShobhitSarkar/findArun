@@ -1,5 +1,7 @@
 .home-view {
     padding-bottom: 60px; /* Adjust based on your bottom nav height */
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
   
   .feed-card {
@@ -11,7 +13,7 @@
   .feed-card .card-title {
     color: #F6547B;
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; 
   }
   
   .feed-card .card-text {

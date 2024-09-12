@@ -1,7 +1,8 @@
 .run-clubs-list .card {
-    background-color: #32322F;
-    border: 1px solid #333;
-    margin-bottom: 1rem;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  margin-bottom: 1rem;
+
   }
   
   .run-clubs-list .card-title {
@@ -14,7 +15,7 @@
   
   .run-clubs-list .btn-primary {
     background-color: #F6547B;
-    border-color: #F3F2F0;
+    border-color: #F6547B;
     color: #000;
   }
   
@@ -24,8 +25,8 @@
   }
 
   .run-clubs-container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 5vw; 
+    padding-right: 5vw;
   }
   
   .heading-container {
@@ -34,12 +35,6 @@
   }
   
   .run-clubs-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #F6547B;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
   }
   
   .heading-accent {

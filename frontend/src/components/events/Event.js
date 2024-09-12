@@ -19,7 +19,7 @@ const Event = () => {
 
   return (
     <Container className="events-list mt-3">
-      <h1 className="mb-4">Events</h1>
+      <h1 className="common-heading">EVENTS</h1>
       {eventsData.map(event => (
         <Card key={event.id} className="mb-3">
           <Card.Body>
