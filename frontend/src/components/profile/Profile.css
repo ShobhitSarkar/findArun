@@ -1,5 +1,7 @@
 .profile-container {
     padding-bottom: 60px; /* Adjust based on your bottom nav height */
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
   
   .profile-card, .attribute-card {

@@ -1,11 +1,14 @@
 .home-view {
     padding-bottom: 60px; /* Adjust based on your bottom nav height */
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
   
   .feed-card {
     background-color: #1a1a1a;
     border: 1px solid #333;
     margin-bottom: 1rem;
+    
   }
   
   .feed-card .card-title {
