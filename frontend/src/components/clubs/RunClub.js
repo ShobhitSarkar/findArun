@@ -20,8 +20,8 @@ const RunClubs = () => {
 
     return (
       <Container className="pt-5 px-4" >
-        <h1 className="run-clubs-heading">
-          Find a Run Club !
+        <h1 className="common-heading">
+          FIND A RUN CLUB
         </h1>
         <div className="run-clubs-list" style={{ maxHeight: '70vh', overflowY: 'auto' }}>
           {runClubsData.map(club => (
